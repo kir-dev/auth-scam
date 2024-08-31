@@ -1,21 +1,21 @@
-import { v4 as uuid } from 'uuid';
-
 export interface ProfileData {
-  displayName: string;
-  givenName: string;
-  internal_id?: string;
-  mail?: string;
+  sub: string;
+  name: string;
+  family_name: string;
+  given_name: string;
+  email?: string;
 }
 
 export class Profile {
   readonly data: ProfileData;
 
-  constructor({ displayName, givenName, internal_id = uuid(), mail }: ProfileData) {
+  constructor({ sub, name, family_name, given_name, email }: ProfileData) {
     this.data = {
-      displayName,
-      givenName,
-      internal_id,
-      mail: mail || internal_id + '@example.com',
+      sub,
+      name,
+      family_name,
+      given_name,
+      email: email || sub + '@example.com',
     };
   }
 

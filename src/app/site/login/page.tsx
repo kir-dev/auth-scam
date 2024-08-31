@@ -11,24 +11,27 @@ import { Profile, ProfileData } from '@/profile';
 const predefinedUsers: (ProfileData & { userIndex: string })[] = [
   {
     userIndex: '1',
-    displayName: 'John Doe',
-    givenName: 'John',
-    internal_id: '3f2a8585-c93a-4849-a2f6-716ee925351d',
-    mail: 'john@example.com',
+    name: 'John Doe',
+    family_name: 'Doe',
+    given_name: 'John',
+    sub: '3f2a8585-c93a-4849-a2f6-716ee925351d',
+    email: 'john@example.com',
   },
   {
     userIndex: '2',
-    displayName: 'Jane Smith',
-    givenName: 'Jane',
-    internal_id: '996bf70c-5638-44cc-8389-2496b2b1d4ae',
-    mail: 'jane@example.com',
+    name: 'Jane Smith',
+    family_name: 'Smith',
+    given_name: 'Jane',
+    sub: '996bf70c-5638-44cc-8389-2496b2b1d4ae',
+    email: 'jane@example.com',
   },
   {
     userIndex: '3',
-    displayName: 'Bob Johnson',
-    givenName: 'Bob',
-    internal_id: 'b12964ab-bcfd-40f9-8911-d9d779780380',
-    mail: 'bob@example.com',
+    name: 'Bob Johnson',
+    family_name: 'Johnson',
+    given_name: 'Bob',
+    sub: 'b12964ab-bcfd-40f9-8911-d9d779780380',
+    email: 'bob@example.com',
   },
 ];
 
@@ -36,10 +39,11 @@ export default function Page() {
   const [redirectUri, setRedirectUri] = useState<string>('http://localhost:3000/auth/callback');
   const [formData, setFormData] = useState<ProfileData & { userIndex: string }>({
     userIndex: '',
-    displayName: '',
-    givenName: '',
-    internal_id: '',
-    mail: '',
+    name: '',
+    family_name: '',
+    given_name: '',
+    sub: '',
+    email: '',
   });
   const [selectedUserIndex, setSelectedUserIndex] = useState<string | null>(null);
 
@@ -101,8 +105,8 @@ export default function Page() {
               </SelectTrigger>
               <SelectContent className='bg-red-500'>
                 {predefinedUsers.map((user) => (
-                  <SelectItem key={user.userIndex} value={user.userIndex.toString()}>
-                    {user.displayName}
+                  <SelectItem key={user.userIndex} value={user.userIndex}>
+                    {user.userIndex} - {user.name}
                   </SelectItem>
                 ))}
               </SelectContent>
